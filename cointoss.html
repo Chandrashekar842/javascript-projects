@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Coin Toss</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            h2 {
+                text-align: center;
+            }
+            button {
+                padding: 7px;
+                margin: 10px;
+                width: 100px;
+                border-radius: 7px;
+                border: 0;
+                font-size: 20px;
+            }
+            div.btn,
+            div.message {
+                display: block;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h2><em>Heads Or tails</em></h2>
+        <div class="message">Select Heads or Tails</div>
+        <div class="btn">
+            <button type="button">Heads</button>
+            <button type="button">Tails</button>
+        </div>
+        <script>
+            const message = document.querySelector(".message");
+            const button = document.querySelectorAll("button");
+            const coinArray = ["Heads", "Tails"];
+            let score = [0,0];
+            for(let i=0; i< button.length; i++) {
+                button[i].addEventListener("click",cointoss);
+            }
+
+            function cointoss(e) {
+                var playerGuess = e.target.innerHTML;
+                var computerGuess = coinArray[Math.floor(Math.random()*2)];
+                let output;
+                message.innerHTML = "computer selected " + computerGuess + "<br>";
+                if(playerGuess === computerGuess)
+                {
+                    output="player wins";
+                    score[0]++;
+                }   
+                else {
+                    output = "computer wins";
+                    score[1]++;
+                }
+                message.innerHTML += output + "<br>player " + score[0] + " computer " + score[1];
+            }
+        </script>
+    </body>
+</html>
