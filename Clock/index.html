@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Real-Time Clock</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <style>
+
+            body {
+                background: linear-gradient(rgb(64, 241, 64), rgb(168, 235, 168));
+                background-size: cover;
+                display: grid;
+                min-height: 100vh;
+                place-content: center;
+            }
+            .clock {
+                width: 20rem;
+                height: 20rem;
+                border: 20px solid white;
+                border-radius: 50%;
+                margin: 50px auto;
+                box-shadow: -10px -7px 10px 10px rgba(64, 233, 78, 0.4);
+                padding: 10px;
+            }
+            .clock-face {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                transform: translateY(-3px)
+            }
+            .hand {
+                width: 50%;
+                height: 6px;
+                background: black;
+                position: absolute;
+                top: 50%;
+                transform-origin: 100%;
+                transform:rotate(90deg);
+                transition: all 0.05s;
+                transition-timing-function:cubic-bezier(0.1, 2.7, 0.58, 1);
+            }
+            .hour-hand {
+                background: white;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="clock">
+            <div class="clock-face">
+                <div class="hand hour-hand"></div>
+                <div class="hand minute-hand"></div>
+                <div class="hand second-hand"></div>
+            </div>
+        </div>
+
+        <script>
+            const secondhand = document.querySelector(".second-hand");
+            const minshand = document.querySelector(".minute-hand");
+            const hourhand = document.querySelector(".hour-hand");
+            function setDate() {
+                const now = new Date();
+                const seconds = now.getSeconds();
+                const secondsdeg = ((seconds/60)* 360) + 90;
+                secondhand.style.transform = `rotate(${secondsdeg}deg)`;
+
+                const minutes = now.getMinutes();
+                const minutesdeg = ((minutes/60)* 360) + 90;
+                minshand.style.transform = `rotate(${minutesdeg}deg)`;
+
+                const hours = now.getHours();
+                const hoursdeg = ((hours/60)* 360) + 90;
+                hourhand.style.transform = `rotate(${hoursdeg}deg)`;
+            }
+            setInterval(setDate, 1000);
+        </script>
+    </body>
+</html>
