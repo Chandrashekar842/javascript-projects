@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Coin Toss</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="cointoss.css">
+    </head>
+    <body>
+        <h2><em>Heads Or tails</em></h2>
+        <div class="message">Select Heads or Tails</div>
+        <div class="btn-1">
+            <button type="button" class="toss">Heads</button>
+            <button type="button" class="toss">Tails</button>
+        </div>
+        <div class="btn-2">
+            <button type="button" id="light">Light</button>
+            <button type="button" id="dark">Dark</button>
+        </div>
+        <script>
+            const message = document.querySelector(".message");
+            const button = document.querySelectorAll(".toss");
+
+            for(let i=0; i < button.length; i++) {
+                button[i].addEventListener('click', cointoss);
+            }
+
+            let score = [0,0];
+            var coinArray = ["Heads", "Tails"];
+            function cointoss(e) {
+                var userGuess = e.target.innerHTML;
+                let computerGuess = coinArray[Math.floor(Math.random() *2)];
+                var output;
+                message.innerHTML = "Player selected " + userGuess + "<br>" + "computer selected " + computerGuess + "<br>";
+                if(userGuess === computerGuess) {
+                    score[0]++;
+                    output = "Player Wins";
+                }
+                else {
+                    score[1]++;
+                    output = "computer Wins";
+                }
+                message.innerHTML += "player " + score[0] + " computer " + score[1];
+            }
+
+            var light = document.getElementById("light");
+            var dark = document.getElementById("dark");
+
+            light.onclick = () => {
+                document.documentElement.style.setProperty("--background-color", "white");
+            }
+
+            dark.onclick = () => {
+                document.documentElement.style.setProperty("--background-color", "darkgrey");
+            }
+            //console.log("computer guess " + coinArray[Math.floor(Math.random*2)]);
+        </script>
+    </body>
+</html>
