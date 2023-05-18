@@ -1,0 +1,25 @@
+:root {
+    --background-color: lightblue;
+    --color: white;
+}
+
+body {
+    background-color: var(--background-color);
+}
+
+h2 {
+    text-align: center;
+}
+div.btn-1 button {
+    padding: 7px;
+    margin: 10px;
+    width: 120px;
+    border-radius: 7px;
+    border: 0;
+    font-size: 20px;
+}
+div.btn-1 ,
+div.message {
+    display: block;
+    text-align: center;
+}
