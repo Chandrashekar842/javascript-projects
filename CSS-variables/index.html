@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CSS Variables</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            :root {
+                --background: white;
+                --color: black;
+                --base: yellow;
+                --spacing: 10px;
+                --blur: 10px;
+            }
+            body {
+                text-align: center;
+                font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                font-size: 30px;
+                background: var(--background);
+                color: var(--color);
+            }
+            .container {
+                margin-bottom: 50px;
+            }
+            input {
+                width: 100px;
+            }
+            #light,#dark {
+                text-align: center;
+                width: 150px;
+                padding: 7px;
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                border: 0;
+                border-radius: 10px;
+            }
+            button:hover {
+                background: rgb(75, 211, 211);
+                color: white;
+            }
+            img {
+                background: var(--base);
+                padding: var(--spacing);
+                filter: blur(var(--blur));
+            }
+            .js {
+                color: var(--base);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+
+            <h1>Updating CSS variables with <span class="js">Javascript</span></h1>
+
+            <label for="spacing">Spacing</label>
+            <input id="spacing" name="spacing" type="range" min="10" max="200" value="10" data-sizing="px">
+
+            <label for="blur">Blur</label>
+            <input id="blur" name="blur" type="range" min="0" max="5" value="10" data-sizing="px">
+
+            <label for="base">Color</label>
+            <input type="color" id="base" name="base" value="#ffc600">
+
+            <div class="theme">
+                <button type="button" id="light">Light</button>
+                <button type="button" id="dark">Dark</button>
+            </div><br>
+
+            <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
+        </div>
+        <script>
+            const light = document.getElementById('light');
+            const dark = document.getElementById('dark');
+
+            dark.addEventListener('click',function() {
+                document.documentElement.style.setProperty('--background','rgb(19, 29, 29)');
+                document.documentElement.style.setProperty('--color','white');
+            });
+
+            light.addEventListener('click',function() {
+                document.documentElement.style.setProperty('--background','white');
+                document.documentElement.style.setProperty('--color','black');
+            })
+
+            const inputs = document.querySelectorAll('.container input');
+
+            function handleEvent() {
+                const suffix = this.dataset.sizing || ' ';
+                document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+            }
+            
+            inputs.forEach(input => input.addEventListener('change', handleEvent));
+            inputs.forEach(input => input.addEventListener('mousemove',handleEvent));
+
+        </script>
+    </body>
+</html>
