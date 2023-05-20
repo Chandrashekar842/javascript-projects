@@ -4,7 +4,7 @@
         <title>Panel Gallery</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style rel="stylesheet" href="style.css"></style>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div class="panels">
@@ -34,5 +34,22 @@
                 <p>Reality</p>
             </div>
         </div>
+        <script>
+            let panels = document.querySelectorAll('.panel');
+            console.log(panels);
+            function open() {
+                console.log('hello');
+                this.classList.toggle('open');
+            }
+            
+            function openactive(e) {
+                if(e.propertyName.includes('flex')) {
+                    this.classList.toggle('open-active');
+                }
+            }
+
+            panels.forEach(panel => panel.addEventListener('click', open));
+            panels.forEach(panel => panel.addEventListener('transitionend', openactive));
+        </script>
     </body>
 </html>
