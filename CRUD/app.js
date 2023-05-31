@@ -1,3 +1,4 @@
+//Checks the inputs after clicking ADD DATA button
 function validateForm() {
     var name = document.getElementById("name").value;
     var age = document.getElementById("age").value;
@@ -27,6 +28,7 @@ function validateForm() {
     return true;
 }
 
+// This function is used to display the data from the local Storage in the form of table --R
 function showData() {
     var peopleList;
     if(localStorage.getItem("peopleList") == null) {
@@ -53,6 +55,7 @@ function showData() {
 
 document.onload = showData();
 
+//This function is used to add data -C
 function AddData() {
     if(validateForm() == true) {
         var name = document.getElementById("name").value;
@@ -85,6 +88,7 @@ function AddData() {
     }
 }
 
+//This function performs delete operation -D
 function deleteData(index) {
     var peopleList;
     if(localStorage.getItem("peopleList") == null) {
@@ -99,6 +103,7 @@ function deleteData(index) {
     showData();
 }
 
+// This function performs Update operation -U
 function updateData(index) {
     document.getElementById("submit").style.display = "none";
     document.getElementById("update").style.display = "block";
